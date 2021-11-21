@@ -1,7 +1,7 @@
-def name_surname(name: str, surname: str) -> str:
-    return f"Cześć  {name} {surname}!"
+def names_function(list_of_names: list):
+    for x in range(len(list_of_names)):
+        print(list_of_names[x])
 
 
-greet = name_surname("Adam", "Ratajczak")
-
-print(greet)
+names_list = ["Adam", "Ewa", "Jakub", "Jan", "Karol"]
+names_function(names_list)
