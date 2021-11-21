@@ -1,1 +1,0 @@
-# zaawansowane_programowanie
