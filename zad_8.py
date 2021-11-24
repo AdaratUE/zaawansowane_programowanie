@@ -1,6 +1,17 @@
+import argparse
 import requests
 
-api_url = ("https://api.openbrewerydb.org/breweries")
+parser = argparse.ArgumentParser(description='City')
+parser.add_argument("city", help="Miasto")
+
+args = parser.parse_args()
+print(args.city)
+
+api_url = f"https://api.openbrewerydb.org/breweries?by_city={args.city}"
+
+
+
+
 response = requests.get(api_url)
 x = response.json()
 
@@ -34,12 +45,7 @@ class Brawery:
 
 lista = []
 
-y = 0
 for item in x:
-    if y < 20:
-        y += 1
-    else:
-        break
     lista.append(Brawery(item['id'], item['name'], item['brewery_type'], item['street'], item['address_2'],
                          item['address_3'], item['city'], item['state'], item['county_province'], item['postal_code'],
                          item['country'], item['longitude'], item['latitude'], item['phone'], item['website_url'],
@@ -48,4 +54,3 @@ for item in x:
 for x in range(len(lista)):
     print(lista[x])
 
-# print(Brawery(response.name))
