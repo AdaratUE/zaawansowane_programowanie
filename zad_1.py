@@ -1,7 +1,17 @@
-def name_surname(name: str, surname: str) -> str:
-    return f"Cześć  {name} {surname}!"
+class Student:
+    def __init__(self, name: str, mark: int):
+        self.name = name
+        self.mark = mark
+
+    def is_passed(self) -> bool:
+        if self.mark > 50:
+            return True
+        else:
+            return False
 
 
-greet = name_surname("Adam", "Ratajczak")
+student1 = Student("Adam", 80)
+student2 = Student("Jan", 30)
 
-print(greet)
+print(student1.is_passed())
+print(student2.is_passed())
