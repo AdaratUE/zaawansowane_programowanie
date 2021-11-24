@@ -33,8 +33,12 @@ class Brawery:
 
 
 lista = []
-
+y = 0
 for item in x:
+    if y < 20:
+        y += 1
+    else:
+        break
     lista.append(Brawery(item['id'], item['name'], item['brewery_type'], item['street'], item['address_2'],
                          item['address_3'], item['city'], item['state'], item['county_province'], item['postal_code'],
                          item['country'], item['longitude'], item['latitude'], item['phone'], item['website_url'],
