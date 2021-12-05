@@ -1,15 +1,25 @@
-from firmy.firma_spozywcza import FirmaSpozywcza
-from firmy.firma_transportowa import FirmaTransportowa
-from firmy.pojazd import Pojazd
-from kursy.kurs import Kurs
-from kursy.odcinek import Odcinek
+import csv
+from flask import Flask, jsonify
+from flask_restful import Api
+from Dane.movies import Movies
+
+app = Flask(__name__)
+api = Api(app)
+
+movies_list = list()
+
+with open('dane/movies.csv', newline='', encoding="utf8") as csvfile:
+    spamreader = csv.reader(csvfile, delimiter=',')
+    next(spamreader)
+    for i, row in enumerate(spamreader):
+        movie = Movies(row[0], row[1], row[2])
+        movies_list.append(movie.__dict__)
 
 
-pojazd1 = Pojazd("BMW", "1993", 5081, "35s", "BMwds132")
-firmaT1 = FirmaTransportowa("Ja jade", [pojazd1], 33, "Białystok", 503555999)
-firmaS1 = FirmaSpozywcza("Ogryzek", "Katowice", 666999555, "2001", "BS3")
-odcinek1 = Odcinek("Gniezno", "Wielkowies", 304, "Ale2", 675)
-odcinek2 = Odcinek("Wielkowies", "Krakow", 408, "Ale4", 888)
-kurs1 = Kurs([odcinek2.odleglosc, odcinek1.odleglosc], firmaS1, firmaT1, pojazd1, "20-1-2021")
+@app.route('/movies', methods=['GET'])
+def get():
+    return jsonify(movies_list)
 
-print(kurs1)
+
+if __name__ == '__main__':
+    app.run(debug=True)
