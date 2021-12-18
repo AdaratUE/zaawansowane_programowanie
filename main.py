@@ -1,6 +1,6 @@
 import csv
-from flask import Flask, jsonify
-from flask_restful import Api
+from flask import Flask
+from flask_restful import Resource, Api
 from Dane.movies import Movies
 
 app = Flask(__name__)
@@ -16,9 +16,13 @@ with open('dane/movies.csv', newline='', encoding="utf8") as csvfile:
         movies_list.append(movie.__dict__)
 
 
-@app.route('/movies', methods=['GET'])
-def get():
-    return jsonify(movies_list)
+
+class TodoSimple(Resource):
+    def get(self):
+        return movies_list
+
+
+api.add_resource(TodoSimple, '/movies')
 
 
 if __name__ == '__main__':
