@@ -17,12 +17,19 @@ with open('dane/movies.csv', newline='', encoding="utf8") as csvfile:
 
 
 
+
 class TodoSimple(Resource):
     def get(self):
         return movies_list
 
 
+class HelloWorld(Resource):
+    def get(self):
+        return {'Witaj': 'user'}
+
+
 api.add_resource(TodoSimple, '/movies')
+api.add_resource(HelloWorld, '/')
 
 
 if __name__ == '__main__':
