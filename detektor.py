@@ -1,7 +1,9 @@
 import cv2
+import imutils
 
 
 def Detector(img, model):
+    img = imutils.resize(img, width=600)
     model.setInputSize(320, 320)
     model.setInputScale(1.0 / 127.5)
     model.setInputMean((127.5, 127.5, 127.5))

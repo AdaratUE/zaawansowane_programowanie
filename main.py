@@ -1,7 +1,6 @@
 import glob
 import time
 import cv2
-import imutils
 from detektor import Detector
 
 
@@ -11,7 +10,6 @@ model = cv2.dnn_DetectionModel(frozen_model, config_file)
 
 for filename in glob.glob('photos/*.jpg'):
     img = cv2.imread(filename)
-    img = imutils.resize(img, width=600)
     start = time.time()
     img = Detector(img, model)
     end = time.time()
