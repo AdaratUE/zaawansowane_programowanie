@@ -1,5 +1,6 @@
 import cv2
 
+
 def Detector(img, model):
     model.setInputSize(320, 320)
     model.setInputScale(1.0 / 127.5)
